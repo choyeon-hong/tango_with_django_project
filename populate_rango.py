@@ -26,14 +26,13 @@ def populate():
 
     # 카테고리와 해당 페이지 데이터를 저장하는 딕셔너리 생성
     cats = {
-        'Python': {'pages': python_pages},
-        'Django': {'pages': django_pages},
-        'Other Frameworks': {'pages': other_pages}
+        'Python': {'pages': python_pages, 'views':128, 'likes':64},
+        'Django': {'pages': django_pages, 'views':64, 'likes':32},
+        'Other Frameworks': {'pages': other_pages, 'views':32, 'likes':16}
     }
-
     # 딕셔너리를 순회하며 카테고리와 페이지를 데이터베이스에 추가
     for cat, cat_data in cats.items():
-        c = add_cat(cat)  # 카테고리 추가
+        c = add_cat(cat, cat_data['views'], cat_data['likes'])  # 카테고리 추가
         for p in cat_data['pages']:
             add_page(c, p['title'], p['url'])  # 페이지 추가
 
@@ -49,8 +48,10 @@ def add_page(cat, title, url, views=0):
     p.save()
     return p
 
-def add_cat(name):
+def add_cat(name, views=0, likes=0):
     c = Category.objects.get_or_create(name=name)[0]
+    c.views = views
+    c.likes = likes
     c.save()
     return c
 
