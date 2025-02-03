@@ -17,6 +17,7 @@
 		<div>
 			<!--Everything within these{{ and }} tags and brackets is interpreted by the Django templating engine before sending a
 completed response back to the client. -->
+		<h2>Most Liked Categories</h2>
 			{% if categories %}
 				<ul>
 				{% for category in categories %}
@@ -28,9 +29,21 @@ completed response back to the client. -->
 			{% else %}
 				<strong>There are no categories present.</strong>
 			{% endif %}
+
+
+		<h2>Most Viewed Pages</h2>
+			{% if pages %}
+				<ul>
+					{% for page in pages %}
+						<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>There are no pages present.</strong>
+			{% endif %}
+
 		</div>
-
-
+	
 
 		<div>
 			<a href="/rango/about/">About Rango</a><br />
