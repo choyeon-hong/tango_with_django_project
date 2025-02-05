@@ -3,7 +3,8 @@
 {% load rango_template_tags %}
 
 <html>
-    <head>
+    <head lang="en">
+        <meta charset="UTF-8" />
         <title>
             Rango -
             {% block title_block %}
@@ -18,10 +19,9 @@
         </div>
         <div>
             {% block sidebar_block %}
-                <!--template tag to pass in the current category – but only if it exists.-->
                 {% get_category_list category %}
             {% endblock %}
-        </div>
+        </div>                <!--template tag to pass in the current category – but only if it exists.-->
         <hr />
         <div>
             <ul>

@@ -1,5 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
+
 #every time the category name changes, the slug will also change 
 #– the save() method is always called when creating or updating an instance of a Django model.
 
@@ -37,3 +39,14 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+# class UserProfile(models.Model):
+#     # Links UserProfile to a User model instance.
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     # The additional attributes
+#     website = models.URLField(blank=True) #blank if necessary
+#     picture = models.ImageField(upload_to='profile_images', blank=True)
+
+#     def __str__(self):
+#         return self.user.username
+
