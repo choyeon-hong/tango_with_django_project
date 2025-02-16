@@ -21,7 +21,8 @@
     {% else %}
     <strong>No pages currently in category.</strong>
     {% endif %}
-    
+
+    {% if user.is_authenticated %} <!--로그인한 사용자만 페이지 추가 가능-->
     <a href="{% url 'rango:add_page' category.slug %}">Add Page</a> <br/>. 
     {% else %}
     The specified category does not exist.
