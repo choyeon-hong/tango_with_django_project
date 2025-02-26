@@ -11,7 +11,11 @@
 
 {% block body_block %}
     {% if category %}
-    <h1>{{ category.name }}</h1>
+    <div class="jumbotron p-4">
+        <div class="container">
+            <h1 class="jumbotron-heading">{{ category.name }}</h1>
+        </div>
+    </div>
     {% if pages %}
     <ul>
         {% for page in pages %}
@@ -22,10 +26,11 @@
     <strong>No pages currently in category.</strong>
     {% endif %}
 
-    {% if user.is_authenticated %} <!--로그인한 사용자만 페이지 추가 가능-->
-    <a href="{% url 'rango:add_page' category.slug %}">Add Page</a> <br/>. 
+    {% if user.is_authenticated %}
+    <a href="{% url 'rango:add_page' category.slug %}">Add Page</a> <br />
+    {% endif %}
     {% else %}
     The specified category does not exist.
     {% endif %}
-    
+
 {% endblock %}
